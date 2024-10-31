@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
 const valoracionesRoutes = require('./routes/valoraciones');
+const cors = require('cors'); 
 require('dotenv').config();
+
+
+app.use(cors({
+  origin: 'https://adsebasdev.netlify.app/'
+}));
 
 // Middleware para parsear JSON
 app.use(express.json());
