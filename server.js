@@ -4,9 +4,9 @@ const valoracionesRoutes = require('./routes/valoraciones');
 const cors = require('cors'); 
 require('dotenv').config();
 
-
+// Configuración de CORS para permitir solicitudes solo desde Netlify
 app.use(cors({
-  origin: 'https://adsebasdev.netlify.app/'
+  origin: 'https://adsebasdev.netlify.app' // Asegúrate de no agregar la barra al final aquí
 }));
 
 // Middleware para parsear JSON
