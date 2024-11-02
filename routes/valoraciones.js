@@ -54,8 +54,10 @@ router.post('/agregar', (req, res) => {
 router.get('/obtener', (req, res) => {
   const query = 'SELECT * FROM valoraciones';
   db.query(query, (err, results) => {
-    if (err) throw err;
-    res.json(results);
+    if (err) {
+      return res.status(500).json({ status: 'error', message: 'Error al obtener las valoraciones' });
+    }
+    res.json({ status: 'success', data: results });
   });
 });
 
