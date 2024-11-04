@@ -21,7 +21,7 @@ router.post('/agregar', (req, res) => {
     console.log("Último ID:", result[0]?.id, "Próximo ID:", nextId);
 
     // Insertar la nueva valoración con el siguiente ID
-    const insertQuery = 'INSERT INTO valoraciones (id, nombre, apellido, area, comentario) VALUES (?, ?, ?, ?, ?)';
+    const insertQuery = 'INSERT INTO valoraciones (id, nombre, apellido, area, linkedin, comentario) VALUES (?, ?, ?, ?, ?)';
     db.query(insertQuery, [nextId, nombre, apellido, area, comentario], (err, result) => {
       if (err) {
         console.error("Error al insertar en la base de datos:", err);
