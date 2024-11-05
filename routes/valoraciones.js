@@ -4,7 +4,7 @@ const db = require('../config/db');
 
 // Ruta para agregar una valoración
 router.post('/agregar', (req, res) => {
-  const { nombre, apellido, area, comentario } = req.body;
+  const { nombre, apellido, area, comentario, linkedin } = req.body; // Añadido linkedin
 
   // Obtener el último ID
   const getLastIdQuery = 'SELECT id FROM valoraciones ORDER BY id DESC LIMIT 1';
@@ -20,9 +20,9 @@ router.post('/agregar', (req, res) => {
 
     console.log("Último ID:", result[0]?.id, "Próximo ID:", nextId);
 
-    // Insertar la nueva valoración con el siguiente ID
-    const insertQuery = 'INSERT INTO valoraciones (id, nombre, apellido, area, linkedin, comentario) VALUES (?, ?, ?, ?, ?)';
-    db.query(insertQuery, [nextId, nombre, apellido, area, comentario], (err, result) => {
+    // Insertar la nueva valoración con el siguiente ID y el campo linkedin
+    const insertQuery = 'INSERT INTO valoraciones (id, nombre, apellido, area, linkedin, comentario) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(insertQuery, [nextId, nombre, apellido, area, linkedin, comentario], (err, result) => {
       if (err) {
         console.error("Error al insertar en la base de datos:", err);
         return res.status(500).json({ status: "error", message: "Error al insertar la valoración" });
