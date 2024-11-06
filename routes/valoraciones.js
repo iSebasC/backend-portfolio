@@ -6,31 +6,18 @@ const db = require('../config/db');
 router.post('/agregar', (req, res) => {
   const { nombre, apellido, area, linkedin, comentario } = req.body;
 
-  // Obtener el último ID con manejo de errores
-  const getLastIdQuery = 'SELECT id FROM valoraciones ORDER BY id DESC LIMIT 1';
-
-  db.query(getLastIdQuery, (err, result) => {
+  // Insertar la nueva valoración sin especificar el campo `id`, ya que es AUTO_INCREMENT
+  const insertQuery = 'INSERT INTO valoraciones (nombre, apellido, area, linkedin, comentario) VALUES (?, ?, ?, ?, ?)';
+  
+  db.query(insertQuery, [nombre, apellido, area, linkedin, comentario], (err, result) => {
     if (err) {
-      console.error("Error al obtener el último ID:", err);
-      return res.status(500).json({ status: "error", message: "Error al obtener el último ID" });
+      console.error("Error al insertar en la base de datos:", err);
+      return res.status(500).json({ status: "error", message: "Error al insertar la valoración" });
     }
-
-    // Calcular el siguiente ID manualmente, teniendo en cuenta si la tabla está vacía
-    const nextId = result.length > 0 ? result[0].id + 1 : 1;
-
-    console.log("Último ID:", result[0]?.id, "Próximo ID:", nextId);
-
-    // Insertar la nueva valoración con el siguiente ID
-    const insertQuery = 'INSERT INTO valoraciones (id, nombre, apellido, area, linkedin, comentario) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(insertQuery, [nextId, nombre, apellido, area, linkedin, comentario], (err, result) => {
-      if (err) {
-        console.error("Error al insertar en la base de datos:", err);
-        return res.status(500).json({ status: "error", message: "Error al insertar la valoración" });
-      }
-      res.status(200).json({ status: "success", message: "Valoración agregada exitosamente" });
-    });
+    res.status(200).json({ status: "success", message: "Valoración agregada exitosamente" });
   });
 });
+
 // Ruta para obtener todas las valoraciones
 router.get('/obtener', (req, res) => {
   const query = 'SELECT * FROM valoraciones';
