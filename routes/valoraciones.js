@@ -30,4 +30,26 @@ router.get('/obtener', (req, res) => {
   });
 });
 
+
+router.get('/portfolio', (req, res) => {
+  // Consulta para obtener solo los campos solicitados
+  const query = `
+    SELECT 
+      CONCAT(nombre, ' ', apellido) AS nombre_completo, 
+      area, 
+      linkedin, 
+      comentario 
+    FROM valoraciones
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error al obtener las valoraciones resumidas:", err);
+      return res.status(500).json({ status: 'error', message: 'Error al obtener las valoraciones resumidas' });
+    }
+    res.json({ status: 'success', data: results });
+  });
+});
+
+
 module.exports = router;
