@@ -38,7 +38,7 @@ router.get('/portfolio', (req, res) => {
       CONCAT(nombre, ' ', apellido) AS nombre_completo, 
       area, 
       linkedin, 
-      comentario 
+      comentario
     FROM valoraciones
   `;
 
