@@ -41,7 +41,7 @@ router.get('/portfolio', (req, res) => {
       comentario
     FROM valoraciones
   `;
-
+  // QUERY
   db.query(query, (err, results) => {
     if (err) {
       console.error("Error al obtener las valoraciones resumidas:", err);
