@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // Configuración de CORS para permitir solicitudes solo desde Netlify
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://adsebasdev.netlify.app'],
+  origin: ['http://localhost:3000', 'https://sebastiancabreralcala.netlify.app/'],
 }));
 
 // Middleware para parsear JSON
