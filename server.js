@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
 const valoracionesRoutes = require('./routes/valoraciones');
-const cors = require('cors'); 
+const cors = require('cors');
 require('dotenv').config();
 
-// Configuración de CORS para permitir solicitudes solo desde Netlify
+// Configuración de CORS para permitir solicitudes desde múltiples orígenes
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://sebastiancabreralcala.netlify.app'], // ← sin slash al final
+  origin: [
+    'http://localhost:3000',
+    'https://sebastiancabreralcala.netlify.app',
+    'https://adsebasdev.netlify.app'
 }));
 
 // Middleware para parsear JSON
