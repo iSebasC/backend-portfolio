@@ -4,12 +4,24 @@ const valoracionesRoutes = require('./routes/valoraciones');
 const cors = require('cors');
 require('dotenv').config();
 
-// Configuración de CORS para permitir solicitudes desde múltiples orígenes
+// Lista de orígenes permitidos
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://sebastiancabreralcala.netlify.app',
+  'https://adsebasdev.netlify.app'
+];
+
+// Configuración de CORS
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://sebastiancabreralcala.netlify.app',
-    'https://adsebasdev.netlify.app'
+  origin: (origin, callback) => {
+    // Permitir solicitudes sin origen como las de herramientas o servidores internos
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('No permitido por CORS'));
+    }
+  }
 }));
 
 // Middleware para parsear JSON
