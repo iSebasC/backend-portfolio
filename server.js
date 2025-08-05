@@ -7,8 +7,10 @@ require('dotenv').config();
 // Lista de orígenes permitidos
 const allowedOrigins = [
   'http://localhost:3000',
+  'http://localhost:4321',
   'https://sebastiancabreralcala.netlify.app',
-  'https://adsebasdev.netlify.app'
+  'https://adsebasdev.netlify.app',
+  'https://nexsigndev.com'
 ];
 
 // Configuración de CORS

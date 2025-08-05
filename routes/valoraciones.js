@@ -50,5 +50,29 @@ router.get('/portfolio', (req, res) => {
     });
 });
 
+// Nueva ruta para la página principal - Solo muestra nombre completo, área y comentario
+router.get('/pagina-principal', (req, res) => {
+    const query = `
+        SELECT 
+            CONCAT(nombre, ' ', apellido) AS nombre_completo, 
+            area, 
+            comentario
+        FROM valoraciones
+        ORDER BY id DESC
+    `;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Error al obtener las valoraciones para página principal:", err.message);
+            console.error("Detalles del error:", err);
+            return res.status(500).json({ 
+                status: 'error', 
+                message: 'Error al obtener las valoraciones para página principal', 
+                details: err.message 
+            });
+        }
+        res.json({ status: 'success', data: results });
+    });
+});
+
 
 module.exports = router;
