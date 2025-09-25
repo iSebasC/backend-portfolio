@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const valoracionesRoutes = require('./routes/valoraciones');
+const proyectosRoutes = require('./routes/proyectos');
+const authRoutes = require('./routes/auth');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -31,6 +33,8 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/valoraciones', valoracionesRoutes);
+app.use('/api/proyectos', proyectosRoutes);
+app.use('/api/auth', authRoutes);
 
 // Iniciar el servidor
 const PORT = process.env.PORT || 5000;
