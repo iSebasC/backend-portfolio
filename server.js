@@ -14,7 +14,7 @@ const allowedOrigins = [
   'https://adsebasdev.netlify.app',
   'https://www.nexsigndev.com',
   'https://sebastiancabreraalcala.netlify.app',
-  'https://sebastiancabreraalcala.com/'
+  'https://sebastiancabreraalcala.com'
 ];
 
 // Configuración de CORS
