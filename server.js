@@ -12,7 +12,9 @@ const allowedOrigins = [
   'http://localhost:4321',
   'https://sebastiancabreralcala.netlify.app',
   'https://adsebasdev.netlify.app',
-  'https://www.nexsigndev.com'
+  'https://www.nexsigndev.com',
+  'https://sebastiancabreraalcala.netlify.app',
+  'https://sebastiancabreraalcala.com/'
 ];
 
 // Configuración de CORS
